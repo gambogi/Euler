@@ -36,7 +36,7 @@ secDiff (TOD secs1 psecs1) (TOD secs2 psecs2)
 
 main = do 
     t0<- getClockTime
-    let result = sum $ takeWhile (<100000) $ filter strongRHarshad [1, 2 ..]
+    let result = sum $ takeWhile (<10^14) $ filter strongRHarshad [1, 2 ..]
     t1 <- getClockTime
     putStrLn $ "sum: "++ show result
     putStrLn $ "time: " ++ (show (secDiff t0 t1) ++"seconds")
