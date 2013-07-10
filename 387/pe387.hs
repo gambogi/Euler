@@ -2,6 +2,7 @@
 import Data.Digits
 import System.Time
 import Data.Numbers.Primes
+import Control.Parallel
 import Control.Parallel.Strategies
 -- sum of digits
 sumDigits n = sum (digits 10 n)
@@ -29,14 +30,18 @@ rHarshad n = (harshad $ rTrunc n) && (rHarshad $ rTrunc n)
 -- Prime, right trunctable harshad numbers
 strongRHarshad n = (isPrime n) && (rHarshad n) && (strongHarshad $ rTrunc n) 
 
+-- used to simplify clock time diffs
 secDiff :: ClockTime -> ClockTime -> Float
 secDiff (TOD secs1 psecs1) (TOD secs2 psecs2) 
         = fromInteger (psecs2 - psecs1) / 1e12 + fromInteger (secs2 - secs1)
 
+-- allows for faster runtime
+parFilter st f xs = filter f xs `using` parList st
 
 main = do 
-    t0<- getClockTime
-    let result = sum $ takeWhile (<10^14) $ filter strongRHarshad [1, 2 ..]
+    t0 <-  getClockTime
+    let ceiling = 10^10
+    let result = sum $ parFilter rseq strongRHarshad [1, 2 .. ceiling]
     t1 <- getClockTime
     putStrLn $ "sum: "++ show result
     putStrLn $ "time: " ++ (show (secDiff t0 t1) ++"seconds")
