@@ -3,7 +3,8 @@ import Data.Digits
 import Data.List
 
 palindrome :: Integer -> Bool
-palindrome n = n == (unDigits 10 $ reverse $ digits 10 n)
+palindrome n = ds == reverse ds
+    where ds = digits 10 n
 
 multiples xs = sort $ concat $ map (zipWith (*) xs) $ tails xs
 
