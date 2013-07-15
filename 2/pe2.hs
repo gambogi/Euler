@@ -1,8 +1,8 @@
 -- Find the sum of the even fibonacci numbers below 4 million
 
 --naive first approach
-fib n = fibs !! n
-        where fibs = 0 : 1 : zipWith (+) fibs (tail fibs)        
+--fib n = fibs !! n
+--        where fibs = 0 : 1 : zipWith (+) fibs (tail fibs)        
 
 --Using Binet's formula
 --golden ratio
