@@ -1,4 +1,4 @@
 -- What is the 10001st prime number?
-
-primes = [n | n<-[2..], not $ elem n [j*k | j<-[2..n-1], k<-[2..n-1]]]
-main = print $ primes !! 10001
+import Data.List
+primes = 2 : unfoldr (\(x:xs)-> Just(x, filter ((> 0).(`rem`x)) xs)) [3,5..]
+main = print $ primes !! 10000
