@@ -1,5 +1,4 @@
 -- What is the largest prime factor of the number 600851475143?
-
 num = 600851475143
 
 primes = 2 : filter ((==1) . length . primeFactors) [3,5..]
