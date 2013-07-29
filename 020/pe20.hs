@@ -4,4 +4,4 @@ main = print $ sum $ digits 10 $ factorial 100
 
 factorial n
     | n == 1     = n
-    | otherwise = n*(factorial $ n-1)
+    | otherwise = n * factorial $ n-1

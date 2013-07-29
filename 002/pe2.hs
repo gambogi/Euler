@@ -11,4 +11,4 @@ f n = round $ phi ** fromIntegral n/sq5
         sq5 = sqrt 5 :: Double
         phi = (1+ sq5) / 2
 
-main = print $ sum $ filter (even) $ takeWhile (<4000000) $ (map f [1,2 ..])
+main = print $ sum $ filter (even) $ takeWhile (<4000000) $ map f [1,2 ..]
